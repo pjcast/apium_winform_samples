@@ -18,11 +18,19 @@
 	 - Python Extension (Install within IDE)
  - git
  - [Inspect.exe](https://docs.microsoft.com/en-us/windows/win32/winauto/inspect-objects)  and/or [UI  Recorder](https://github.com/Microsoft/WinAppDriver/releases)
+ - For building the sample app, you will need DotNet Core 3.0/1 SDK. Also, there is a 2019 Visual Studio solution. Also possible to use Visual Studio Code.
 
 
 **Required Windows Setting**
 You must enable developer mode. Enable it through Settings and restart Windows Application Driver. Windows Settings / App Store - set to developer mode.
 
+**Building sample .Net Core basic app**
+<pre><code>
+cd winforms\basic\Basic
+dotnet restore
+dotnet build
+dotnet run
+</code></pre>
  
 **Running from command line**
 
@@ -33,6 +41,10 @@ Windows Application Driver listening for requests at: http://127.0.0.1:4723/
 Press ENTER to exit.
 </code></pre>
 
+Running the basic_sample python script will launch the basic sample application and perform some UI interaction
+<pre><code>
+python basic_sample.py
+</code></pre>
 
 Information from WebAppDriver repository (check https://github.com/microsoft/WinAppDriver/blob/master/Docs/AuthoringTestScripts.md for latest)
 
