@@ -1,0 +1,13 @@
+{
+	"panel": {
+		"id": "panel1",
+		"children": {
+			"textbox1": { "id": "textbox1" },
+			"textbox2": { "xpath": "//Edit[2]" },
+			"textbox3": { "id": "textbox2" },
+			"combobox": { "id": "comboBox1" }
+		}
+	},
+	"checkbox": { "id": "checkBox1" },
+	"button": { "id": "button1" }
+}

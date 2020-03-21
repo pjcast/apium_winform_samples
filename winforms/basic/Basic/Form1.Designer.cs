@@ -58,6 +58,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(425, 165);
             this.panel1.TabIndex = 1;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // textBox1
             // 
@@ -66,28 +67,19 @@
             this.textBox1.Size = new System.Drawing.Size(394, 23);
             this.textBox1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(491, 262);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(14, 55);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(394, 23);
-            this.textBox2.TabIndex = 0;
+            this.textBox2.TabIndex = 1;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(14, 84);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(394, 23);
-            this.textBox3.TabIndex = 0;
+            this.textBox3.TabIndex = 2;
             // 
             // comboBox1
             // 
@@ -100,7 +92,16 @@
             this.comboBox1.Location = new System.Drawing.Point(287, 113);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 1;
+            this.comboBox1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(491, 262);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
