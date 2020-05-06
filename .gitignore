@@ -5,6 +5,9 @@
 *.userosscache
 *.sln.docstates
 
+window_dump.xml
+output.txt
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
