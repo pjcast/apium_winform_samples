@@ -34,8 +34,7 @@ namespace DataGrid
         private List<DataItem> PopulateItems()
         {
             var rand = new Random();
-            //var numberOfItems = rand.Next(5, 500);
-            var numberOfItems = 50;
+            var numberOfItems = rand.Next(5, 200);
             var items = new List<DataItem>();
 
             for(int i = 0; i < numberOfItems; ++i)
