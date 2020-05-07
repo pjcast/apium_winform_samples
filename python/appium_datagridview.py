@@ -103,56 +103,28 @@ class data_grid_view:
 		index = row.text[3:].strip()
 		return int(index)		
 		
-	def _send_key_repeated(self, element, key, repeat_count):
-		for i in range(repeat_count):
-			element.send_keys(key)
-			
-	def _precise_click(self, element):
-		actions = ActionChains(self.object.driver)
-		actions.move_to_element(element)
-		actions.click()
-		actions.perform()
-		#action.double_click(row).perform()
-		#self.ui.move_to_element(element)
-		
-	def scroll_to_row(self, row_index):
-		visible_rows = self.visible_rows()
-		visible_rows_count = len(visible_rows)
-		if visible_rows_count == 0: raise ValueError('Expected row(s) to be visible')
+	def send_key_repeated(self, key, repeat_count):
+		self.ui.send_keys(key * repeat_count)
 
-		start = self._getRowIndexFromName(visible_rows[0])
-		if visible_rows_count > 1:
-			end = self._getRowIndexFromName(visible_rows[visible_rows_count - 1])
-		else:
-			end = start
-			
-		if row_index >= start and row_index <= end:
-			print('Row {0} already contained in visible area (rows {1}-{2})'.format(row_index, start, end))
-		
-		print('dst row {0}, start {1}, end {2} (visible range {3})'.format(row_index, start, end, len(visible_rows)))
-		time.sleep(10)
-		
+	def move_to_row(self, row_index):
+		if row_index < 0: raise ValueError("Cannot Select Negative Row")
+		if row_index >= self.row_count(): raise ValueError("Cannot Exceed Row Count")
+
+		selected = self.selected_row()
+
+		start = self._getRowIndexFromName(selected)
+		if start == row_index:
+			return
+
 		# Need to go up or down?
 		if row_index < start:
 			offset = start - row_index
 			key = Keys.UP
-			print('Clicking row {0}, offset {1}, up'.format(start, offset))
-			time.sleep(2)
-			visible_rows[0].click()
-			time.sleep(5)
-			#self.datarow_get(start).click()
 		else:
-			offset = row_index - end
+			offset = row_index - start
 			key = Keys.DOWN
-			print('Clicking row {0}, offset {1}, down'.format(end, offset))
-			time.sleep(1)
-			self.dump(visible_rows[visible_rows_count - 2], "row-2")
-			self.dump(visible_rows[visible_rows_count - 1], "row-1")
-			visible_rows[visible_rows_count - 2].click()
-			time.sleep(5)
-			#self.datarow_get(end).click()
 			
-		self._send_key_repeated(self.ui, key, offset)
+		self.send_key_repeated(key, offset)
 		
 	def scroll_get_v_position(self):
 		''' Returns scroll position 1 to 100 '''

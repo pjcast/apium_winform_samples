@@ -1,4 +1,4 @@
-# This Appium sample uses the sample dotnet core winform's Basic app located in [root]\winforms\basic
+# This Appium sample uses the sample dotnet core winform's DataGrid app located in [root]\winforms\datagrid
 
 import os
 import sys
@@ -17,6 +17,16 @@ def load_appium() -> webdriver.Remote:
 		
 	driver = webdriver.Remote(command_executor='http://127.0.0.1:4723', desired_capabilities=desired_caps)
 	return driver
+	
+def assert_value(name, expected, actual):
+	if expected != actual:
+		msg = "Expected {0} to equal {1}. Actual: {2}".format(name, expected, actual)
+		raise ValueError(msg)
+		
+def assert_true(name, actual):
+	if actual == False:
+		msg = "Expected {0} to be true, actual: {1}".format(name, actual)
+		raise ValueError(msg)
 
 driver = load_appium()
 
@@ -24,30 +34,19 @@ o = object_repository(".\\", driver)
 print('* Finding DataGridView and wrapping with helper class...')
 dg = data_grid_view(o.datagrid.grid, False, 20)
 
-cols = dg.col_count()
-rows = dg.row_count()
-print('Grid has {0} cols and {1} rows'.format(cols, rows))
+row_count = dg.row_count()
+assert_value('Column Count', 3, dg.col_count())
+assert_true('Row Count > 0', row_count > 0)
 
-if cols != 3: raise ValueError('Expected 3 cols')
-if rows <= 0: raise ValueError('Expected some rows')
-
-last_row_index = rows - 1
-#last_row = dg.datarow_get(last_row_index)
-#print('got last row')
-#dg.dump(last_row, "Last Row")
-print(' move to row... 10 secs')
-time.sleep(10)
 selected_row = dg.selected_row()
-dg.dump(selected_row, "Selected")
-#dg.datarow_get(4).click()
+assert_value('Selected Row', 'Row 0', selected_row.text)
 
-#o.datagrid.dump_page()
-#dg.scroll_to_row(20)
-dg.scroll_to_row(last_row_index)
-#dg._precise_click(dg.datarow_get(last_row_index))
-#time.sleep(5)
+dg.send_key_repeated(Keys.DOWN, 2)
+selected_row = dg.selected_row()
+assert_value('Selected Row', 'Row 2', selected_row.text)
 
-#print('Scroll Position {0}'.format(dg.scroll_get_v_position()))
+print("Moving to last row")
+dg.move_to_row(row_count - 1)
 
 # Shutdown connection and close test app
 driver.quit()
